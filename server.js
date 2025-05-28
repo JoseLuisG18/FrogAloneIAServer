@@ -6,25 +6,11 @@ const fetch = require("node-fetch");
 const app = express();
 const PORT = 3001;
 
-const allowedOrigins = [
-  "http://localhost:8080",
-  "https://jgargar558j.github.io",
-];
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      } else {
-        return callback(new Error("No permitido por CORS"));
-      }
-    },
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+app.use(cors({
+  origin: "https://jgargar558j.github.io",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 app.use(express.json());
 
