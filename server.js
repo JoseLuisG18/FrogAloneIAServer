@@ -1,4 +1,3 @@
-
 const express = require("express");
 const cors = require("cors");
 const fetch = require("node-fetch");
@@ -14,24 +13,26 @@ app.post("/api/chat", async (req, res) => {
   const { messages } = req.body;
 
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${process.env.GEMINI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gpt-4o",
-        messages,
-        temperature: 0.7,
-        max_tokens: 150,
+        contents: [
+          {
+            role: "user",
+            parts: messages.map((msg) => ({ text: msg.content }))
+          }
+        ]
       }),
     });
 
     const data = await response.json();
     res.json(data);
   } catch (error) {
-    console.error("Error al llamar a OpenAI:", error);
+    console.error("Error al llamar a Gemini:", error);
     res.status(500).json({ error: "Error al procesar la solicitud" });
   }
 });
