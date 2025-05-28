@@ -1,6 +1,6 @@
 
 {
-  "name": "openai-proxy",
+  "name": "gemini-proxy",
   "version": "1.0.0",
   "main": "server.js",
   "type": "commonjs",
