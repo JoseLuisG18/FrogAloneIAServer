@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 const auth = new GoogleAuth({
-  keyFile: "service-account.json", // Ruta al archivo JSON de la cuenta de servicio
+  credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT),
   scopes: "https://www.googleapis.com/auth/generative-language",
 });
 
