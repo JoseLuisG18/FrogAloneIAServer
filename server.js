@@ -6,7 +6,12 @@ const fetch = require("node-fetch");
 const app = express();
 const PORT = 3001;
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:8080", // o el dominio de tu frontend en producción
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 app.use(express.json());
 
 const auth = new GoogleAuth({
