@@ -7,7 +7,7 @@ const app = express();
 const PORT = 3001;
 
 app.use(cors({
-  origin: "https://jgargar558j.github.io",
+  origin: "https://joseluisg18.github.io/PI2025/",
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
